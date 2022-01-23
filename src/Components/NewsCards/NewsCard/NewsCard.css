@@ -1,0 +1,42 @@
+.media {
+  height: 200px;
+}
+
+.border {
+  border: solid;
+}
+
+.fullHeightCard {
+  height: 100%;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-bottom: 10px solid white;
+}
+
+.activeCard {
+  border-bottom: 10px solid #22289a;
+}
+
+.grid {
+  display: flex;
+}
+
+.details {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+}
+
+.title {
+  padding: 0 16px;
+}
+
+.cardActions {
+  padding: 0 16px 8px 16px;
+  display: flex;
+  justify-content: space-between;
+}
