@@ -6,6 +6,7 @@ const alanKey = process.env.REACT_APP_ALAN_KEY;
 
 const App = () => {
   const [newsArticles, setNewsArticles] = useState([]);
+  const [activeArticle, setActiveArticle] = useState(-1);
 
   useEffect(() => {
     alanBtn({
@@ -13,6 +14,9 @@ const App = () => {
       onCommand: ({ command, articles }) => {
         if (command === "newHeadlines") {
           setNewsArticles(articles);
+          setActiveArticle(-1);
+        } else if (command === "highlight") {
+          setActiveArticle((prevActiveArticle) => prevActiveArticle + 1);
         }
       },
     });
@@ -21,7 +25,7 @@ const App = () => {
   return (
     <div>
       <h1>Alan AI News Application</h1>
-      <NewsCards articles={newsArticles} />
+      <NewsCards activeArticle={activeArticle} articles={newsArticles} />
     </div>
   );
 };
