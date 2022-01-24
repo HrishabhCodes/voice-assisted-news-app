@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, createRef } from "react";
 import {
   Card,
   CardActions,
@@ -16,8 +16,28 @@ const NewsCard = ({
   i,
   activeArticle,
 }) => {
+  const [elemRefs, setElemRefs] = useState([]);
+  const scrollToRef = (ref) => {
+    window.scroll(0, ref.current.offsetTop - 50);
+  };
+
+  useEffect(() => {
+    setElemRefs((refs) => {
+      Array(20)
+        .fill()
+        .map((_, index) => refs[index] || createRef());
+    });
+  }, []);
+
+  useEffect(() => {
+    if (i === activeArticle && elemRefs[activeArticle]) {
+      scrollToRef(elemRefs[activeArticle]);
+    }
+  }, [i, activeArticle, elemRefs]);
+
   return (
     <Card
+      ref={elemRefs[i]}
       className={classNames("card", activeArticle === i ? "activeCard" : null)}
     >
       <CardActionArea href={url} target="_blank">
