@@ -33,8 +33,11 @@ const NewsCards = ({ articles, activeArticle }) => {
         <Grid className="container" container alignItems="stretch" spacing={3}>
           {infoCards.map((infoCard) => (
             <Grid item xs={12} sm={6} md={4} lg={3} className="infocard">
-              <div className="card" style={{ backgroundColor: infoCard.color }}>
-                <Typography variant="h6">
+              <div
+                className="helpCard"
+                style={{ backgroundColor: infoCard.color }}
+              >
+                <Typography className="title" variant="h6">
                   <strong>{infoCard.title}</strong>
                 </Typography>
                 {infoCard.info ? (

@@ -16,3 +16,20 @@ body {
 html {
   scroll-behavior: smooth;
 }
+
+.header {
+  display: flex;
+  justify-content: center;
+  margin: 3rem 0;
+}
+
+.heading {
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 4rem !important;
+  margin: 0.5rem 0 0 0;
+}
+
+.icon {
+  height: 4rem;
+  margin-right: 0.5rem;
+}

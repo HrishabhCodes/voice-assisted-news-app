@@ -13,8 +13,8 @@ import classNames from "classnames";
 
 const NewsCard = ({
   article: { description, publishedAt, source, title, url, urlToImage },
-  i,
   activeArticle,
+  i,
 }) => {
   const [elemRefs, setElemRefs] = useState([]);
   const scrollToRef = (ref) => {
@@ -22,11 +22,12 @@ const NewsCard = ({
   };
 
   useEffect(() => {
-    setElemRefs((refs) => {
+    window.scroll(0, 0);
+    setElemRefs((refs) =>
       Array(20)
         .fill()
-        .map((_, index) => refs[index] || createRef());
-    });
+        .map((_, j) => refs[j] || createRef())
+    );
   }, []);
 
   useEffect(() => {
@@ -66,7 +67,7 @@ const NewsCard = ({
         </CardContent>
       </CardActionArea>
       <CardActions className="cardActions">
-        <Button size="small" color="primary" href="">
+        <Button size="small" color="primary" target="_blank" href={url}>
           Learn More
         </Button>
         <Typography variant="h5" color="textSecondary" component="h2">

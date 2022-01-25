@@ -4,7 +4,8 @@
   margin: 0;
 }
 
-.card {
+.helpCard {
+  text-shadow: 1px 1px #727272;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -15,9 +16,19 @@
   border-radius: 10%;
   color: white;
   text-align: center;
+  background-image: url("../../Assets/latestnews.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .infoCard {
   display: flex;
   flex-direction: column;
+}
+
+.title {
+  font-size: 1.4rem !important;
+  font-family: "Josefin Sans", sans-serif !important;
+  font-weight: 600;
 }

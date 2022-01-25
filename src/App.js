@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import alanBtn from "@alan-ai/alan-sdk-web";
 import wordsToNumbers from "words-to-numbers";
 import NewsCards from "./Components/NewsCards/NewsCards";
+import icon from "./Assets/icon.png";
 
 const alanKey = process.env.REACT_APP_ALAN_KEY;
 
@@ -26,11 +27,13 @@ const App = () => {
 
           const article = articles[parsedNumber - 1];
 
-          if (parsedNumber > 20) {
+          if (parsedNumber > articles.length) {
             alanBtn().playText("Please, try that again!");
           } else if (article) {
-            window.open(article.url, "_blank");
             alanBtn().playText("Opening...");
+            window.open(article.url, "_blank");
+          } else {
+            alanBtn().playText("Please try that again...");
           }
         }
       },
@@ -39,7 +42,11 @@ const App = () => {
 
   return (
     <div>
-      <h1>Alan AI News Application</h1>
+      <div className="header">
+        <img className="icon" src={icon} alt="icon" />
+        <h1 className="heading">NewsEra</h1>
+      </div>
+
       <NewsCards activeArticle={activeArticle} articles={newsArticles} />
     </div>
   );
