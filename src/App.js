@@ -24,16 +24,10 @@ const App = () => {
             number.length > 2
               ? wordsToNumbers(number, { fuzzy: true })
               : number;
-
           const article = articles[parsedNumber - 1];
 
-          if (parsedNumber > articles.length) {
-            alanBtn().playText("Please, try that again!");
-          } else if (article) {
-            alanBtn().playText("Opening...");
+          if (article) {
             window.open(article.url, "_blank");
-          } else {
-            alanBtn().playText("Please try that again...");
           }
         }
       },
