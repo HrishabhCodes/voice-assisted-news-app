@@ -1,5 +1,5 @@
 import React from "react";
-import NewsCard from "./NewsCard/NewsCard";
+import NewsCard from "../NewsCard/NewsCard";
 import { Grid, Typography } from "@mui/material";
 import Grow from "@mui/material/Grow";
 import "./NewsCards.css";
