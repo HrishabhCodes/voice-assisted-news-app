@@ -7,6 +7,7 @@ body {
 body {
   margin: 0;
   background-color: whitesmoke;
+  background-image: url("./Assets/background.jpeg");
 }
 
 * {
@@ -20,7 +21,9 @@ html {
 .header {
   display: flex;
   justify-content: center;
-  margin: 3rem 0;
+  margin: 0;
+  padding: 1rem;
+  background-color: white;
 }
 
 .heading {

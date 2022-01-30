@@ -1,10 +1,11 @@
 .container {
-  padding: 0 5%;
+  padding: 4% 5%;
   width: 100%;
   margin: 0;
 }
 
 .helpCard {
+  border: 0.1rem solid rgb(180, 180, 180);
   text-shadow: 1px 1px #727272;
   display: flex;
   flex-direction: column;
@@ -20,6 +21,15 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  transition: all 0.3s ease;
+}
+
+.helpCard:hover {
+  transform: scale(1.05);
+  color: rgb(130, 188, 255);
+  background-color: black;
+  background-image: none;
+  text-shadow: none;
 }
 
 .infoCard {

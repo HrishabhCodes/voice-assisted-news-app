@@ -41,7 +41,11 @@ const App = () => {
         <h1 className="heading">NewsEra</h1>
       </div>
 
-      <NewsCards activeArticle={activeArticle} articles={newsArticles} />
+      <NewsCards
+        className="news-cards"
+        activeArticle={activeArticle}
+        articles={newsArticles}
+      />
     </div>
   );
 };
