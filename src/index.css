@@ -1,21 +1,37 @@
-#root,
-html,
-body {
-  height: 100vh;
+* {
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
   background-color: whitesmoke;
   background-image: url("./Assets/background.jpeg");
-}
-
-* {
-  box-sizing: border-box;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 html {
   scroll-behavior: smooth;
+}
+
+.app {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.main-cont {
+  flex-grow: 1;
+}
+
+/* Navbar */
+
+.navbar {
+  margin: 0 auto;
+  padding: 1rem 3.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .header {
@@ -23,16 +39,168 @@ html {
   justify-content: center;
   margin: 0;
   padding: 1rem;
-  background-color: white;
 }
 
 .heading {
   font-family: "Josefin Sans", sans-serif;
   font-size: 4rem !important;
   margin: 0.5rem 0 0 0;
+  color: white;
 }
 
 .icon {
   height: 4rem;
-  margin-right: 0.5rem;
+  margin-right: 1rem;
+}
+
+/* Weather Card */
+
+.weather {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 23rem;
+  height: 90%;
+}
+
+.weather-help {
+  font-family: "Josefin Sans", sans-serif;
+  color: white;
+  background: rgba(194, 194, 194, 0.247);
+  width: 32%;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 80px rgba(110, 202, 255, 0.329);
+  height: 3rem;
+  padding: 10px 2%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-right: 1.2rem;
+  transition: all 0.3s ease;
+}
+
+.weather-help:hover {
+  transform: scale(1.05);
+  color: rgb(130, 188, 255);
+  background-color: black;
+  border: 0.1rem solid rgb(180, 180, 180);
+}
+
+.temp-icon {
+  font-size: 2.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.value {
+  font-size: 4.2rem;
+}
+
+.cont {
+  display: flex;
+}
+
+.temperature {
+  font-family: "Josefin Sans", sans-serif;
+  padding-top: 10px;
+  align-items: center;
+  display: flex;
+  justify-content: space-evenly;
+  width: 40%;
+  height: 100%;
+  background: rgba(194, 194, 194, 0.247);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 80px rgba(110, 202, 255, 0.329);
+  color: white;
+}
+
+.description {
+  font-family: "Noto Sans", sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: white;
+  padding: 1% 0%;
+  width: 60%;
+  height: 100%;
+  margin-left: 1rem;
+}
+
+.place {
+  font-size: 1.5rem;
+}
+
+.high-low {
+  font-size: 1rem;
+  color: rgb(187, 187, 187);
+}
+
+.condition {
+  font-size: 1.2rem;
+  color: rgb(187, 187, 187);
+}
+
+/* Footer */
+
+.footer {
+  margin-top: 1rem;
+  font-family: "Josefin Sans", sans-serif;
+  width: 100%;
+  color: rgb(129, 205, 255);
+  height: 7rem;
+  background: rgba(194, 194, 194, 0.082);
+  border-top: 1px solid rgba(236, 236, 236, 0.541);
+  box-shadow: 0 0 80px rgba(110, 202, 255, 0.568);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.created-by {
+  margin: 1rem 0;
+  font-size: 1.3rem;
+}
+
+.contact {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+}
+
+.fa-brands {
+  font-size: 2rem;
+  color: white;
+  margin: 0 1rem;
+  transition: all 0.3s ease;
+}
+
+.fa-brands:hover {
+  color: rgb(208, 234, 255);
+}
+
+@media screen and (max-width: 1290px) {
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .description {
+    align-items: flex-end;
+  }
+
+  .weather {
+    margin-top: 2rem;
+  }
+
+  .weather-help {
+    width: 70%;
+    margin-right: 0;
+    margin-top: 2rem;
+  }
+}
+
+@media screen and (max-width: 711px) {
+  .weather-help {
+    width: 90%;
+  }
 }
