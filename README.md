@@ -8,10 +8,11 @@ NewsEra is a conversational voice controlled React News Application. You can fin
 - [Alan AI](https://alan.app)
 - [News API](https://newsapi.org)
 - [Material UI](https://mui.com)
+- [Weather API](https://www.weatherapi.com/) and [Air Quality Programmatic APIs](https://aqicn.org/api/)
 
 ## Demo Video
 
-https://user-images.githubusercontent.com/71200145/151339364-46031c4a-337e-49a8-9bc6-bec0de88eab3.mp4
+https://user-images.githubusercontent.com/71200145/152525851-b0ad0d0e-c9db-4709-9bc6-e4dade9ce5ea.mp4
 
 ## Key Features
 
