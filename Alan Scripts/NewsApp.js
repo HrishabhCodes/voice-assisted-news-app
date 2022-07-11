@@ -20,7 +20,6 @@ intent(
     let AQI_URL = `https://api.waqi.info/feed/${p.place.value}/?token=${aqiKey}`;
     let forecastInfo;
     api.request(WEATHER_URL, (err, response, body) => {
-      console.log("Hi");
       const { location, current, forecast, error } = JSON.parse(body);
       if (error) {
         p.play("Sorry, please try searching for some other place.");
@@ -40,7 +39,6 @@ intent(
       let aqi;
       if (status !== "error") {
         aqi = data.aqi;
-        console.log(aqi);
       }
       p.play({ command: "weather", forecastInfo, aqi });
     });
