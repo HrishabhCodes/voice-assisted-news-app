@@ -6,9 +6,9 @@ intent(
   )
 );
 
-const newsKey = process.env.REACT_APP_NEWS_API_KEY;
-const weatherKey = process.env.REACT_APP_WEATHER_API_KEY;
-const aqiKey = process.env.REACT_APP_AQI_API_KEY;
+const NEWS_API_KEY = "d8f5ed42b21e4e30ae51dd23a219ac9d";
+const WEATHER_API_KEY = "5920cecc638a498287a122719222901";
+const AQI_API_KEY = "b2626edc82c24b91c69e261ffaf81eca1fa225dc";
 let savedArticles = [];
 
 // Weather Information
@@ -16,10 +16,11 @@ let savedArticles = [];
 intent(
   `(tell me|what's|show me|) (the|) (temperature|weather) (of|in) $(place* (.+))`,
   (p) => {
-    let WEATHER_URL = `http://api.weatherapi.com/v1/forecast.json?key=${weatherKey}&q=${p.place.value}&days=1&aqi=no&alerts=no`;
-    let AQI_URL = `https://api.waqi.info/feed/${p.place.value}/?token=${aqiKey}`;
+    let WEATHER_URL = `http://api.weatherapi.com/v1/forecast.json?key=${WEATHER_API_KEY}&q=${p.place.value}&days=1&aqi=no&alerts=no`;
+    let AQI_URL = `https://api.waqi.info/feed/${p.place.value}/?token=${AQI_API_KEY}`;
     let forecastInfo;
     api.request(WEATHER_URL, (err, response, body) => {
+      console.log("Hi");
       const { location, current, forecast, error } = JSON.parse(body);
       if (error) {
         p.play("Sorry, please try searching for some other place.");
@@ -39,6 +40,7 @@ intent(
       let aqi;
       if (status !== "error") {
         aqi = data.aqi;
+        console.log(aqi);
       }
       p.play({ command: "weather", forecastInfo, aqi });
     });
@@ -48,16 +50,20 @@ intent(
 // News By Sources
 
 intent(`(Give me| tell me| show me) the news from $(source* (.+))`, (p) => {
-  let NEWS_API_URL = `https://newsapi.org/v2/top-headlines?apiKey=${newsKey}`;
+  let NEWS_API_URL = `https://newsapi.org/v2/top-headlines?apiKey=${NEWS_API_KEY}`;
   if (p.source.value) {
     NEWS_API_URL = `${NEWS_API_URL}&sources=${p.source.value
       .toLowerCase()
       .split(" ")
       .join("-")}`;
   }
-  api.request(NEWS_API_URL, (error, response, body) => {
-    const { articles } = JSON.parse(body);
 
+  async function fetchdata() {
+    const articleResponse = await api.axios({
+      url: NEWS_API_URL,
+      method: "GET",
+    });
+    const { articles } = articleResponse.data;
     if (!articles.length) {
       p.play("Sorry, please try searching for news from a different source.");
       return;
@@ -70,21 +76,27 @@ intent(`(Give me| tell me| show me) the news from $(source* (.+))`, (p) => {
 
     p.play("Would you like me to read all the headlines?");
     p.then(confirmation);
-  });
+  }
+
+  fetchdata();
 });
 
 // News By Terms
 
 intent(
-  `(read|show|get|bring me|give me|what's up) (the|) (news|articles) (with|on) $(term* (.+))`,
+  `(read|show|get|bring me|give me|what's up) (the|) (news|articles|) (with|on) $(term* (.+))`,
   (p) => {
-    let NEWS_API_URL = `https://newsapi.org/v2/everything?apiKey=${newsKey}`;
+    let NEWS_API_URL = `https://newsapi.org/v2/everything?apiKey=${NEWS_API_KEY}`;
     if (p.term.value) {
       NEWS_API_URL = `${NEWS_API_URL}&q=${p.term.value}`;
     }
-    api.request(NEWS_API_URL, (error, response, body) => {
-      const { articles } = JSON.parse(body);
 
+    async function fetchdata() {
+      const articleResponse = await api.axios({
+        url: NEWS_API_URL,
+        method: "GET",
+      });
+      const { articles } = articleResponse.data;
       if (!articles.length) {
         p.play("Sorry, please try searching for something else.");
         return;
@@ -97,7 +109,9 @@ intent(
 
       p.play("Would you like me to read all the headlines?");
       p.then(confirmation);
-    });
+    }
+
+    fetchdata();
   }
 );
 
@@ -117,18 +131,23 @@ const CATEGORIES_INTENT = `${CATEGORIES.map(
 ).join("|")}`;
 
 intent(
-  `(show|what is|tell me|what's|what are|what're|read) (the|) (recent|latest|) $(N news|headlines) (in|about|on|) $(C~ ${CATEGORIES_INTENT})`,
-  `(read|show|get|bring me|give me) (the|) (recent|latest) $(C~ ${CATEGORIES_INTENT}|) $(N news|headlines)`,
+  `(show|what is|tell me|what's|what are|what're|read) (the|) (recent|latest|) (news|headlines) (in|about|on|) $(C~ ${CATEGORIES_INTENT})`,
+  `(read|show|get|bring me|give me) (the|) (recent|latest) $(C~ ${CATEGORIES_INTENT}|) (news|headlines)`,
   (p) => {
-    let NEWS_API_URL = `https://newsapi.org/v2/top-headlines?apiKey=${newsKey}&country=us`;
+    let NEWS_API_URL = `https://newsapi.org/v2/top-headlines?apiKey=${NEWS_API_KEY}&country=us`;
     if (p.C.value) {
       NEWS_API_URL = `${NEWS_API_URL}&category=${p.C.value}`;
     }
-    api.request(NEWS_API_URL, (error, response, body) => {
-      const { articles } = JSON.parse(body);
 
+    async function fetchdata() {
+      const articleResponse = await api.axios({
+        url: NEWS_API_URL,
+        method: "GET",
+      });
+      const { articles } = articleResponse.data;
+      console.log(articles);
       if (!articles.length) {
-        p.play("Sorry, please try searching for a different category.");
+        p.play("Sorry, please try searching for something else.");
         return;
       }
 
@@ -142,9 +161,11 @@ intent(
         p.play(`Here are the (latest|recent) articles.`);
       }
 
-      p.play("Would you like me to read the headlines?");
+      p.play("Would you like me to read all the headlines?");
       p.then(confirmation);
-    });
+    }
+
+    fetchdata();
   }
 );
 
