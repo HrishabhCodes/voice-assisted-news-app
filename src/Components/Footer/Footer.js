@@ -4,7 +4,7 @@ import "./Footer.css";
 const Footer = () => {
   return (
     <>
-      <div className="created-by">Made with ❤️ by Hrishabh Jain</div>
+      <div className="created-by">Made with ❤️ by Daniyal Ikram</div>
       <div className="contact">
         <a
           rel="noopener noreferrer"
